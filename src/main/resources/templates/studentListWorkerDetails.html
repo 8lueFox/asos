@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Podaj swoje dane</h3>
+    <form th:action="@{pokazStudentow(pracownik)}" th:method="POST" th:object="${pracownik}">
+        <input placeholder="Imie" th:field="*{imie}" type="text" autofocus="true"><br>
+        <input placeholder="Nazwisko" th:field="*{nazwisko}" type="text"><br>
+        <button type="submit">Sig in</button>
+    </form>
+</body>
+</html>
