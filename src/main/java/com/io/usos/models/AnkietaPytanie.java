@@ -10,15 +10,12 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "ankiety")
-public class Ankieta {
+@Table(name = "pytania")
+public class AnkietaPytanie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Pracownik pracownik;
 
 
 }
