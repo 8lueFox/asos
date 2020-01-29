@@ -2,10 +2,11 @@ package com.io.usos.services;
 
 import com.io.usos.models.*;
 import javassist.NotFoundException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     Pracownik getPracownik(int id);
 
@@ -22,5 +23,7 @@ public interface UserService {
     void deleteStudent(int id);
 
     void saveStudent(Student student);
+
+    boolean isUniqueLogin(String login);
 
 }
