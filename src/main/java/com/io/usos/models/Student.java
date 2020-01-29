@@ -11,25 +11,17 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "studenci")
-public class Student {
+public class Student extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotBlank
-    private String imie;
-
-    @NotBlank
-    private String nazwisko;
-
-    @NotBlank
     private String pesel;
 
-    public Student(String imie, String nazwisko, String pesel){
-        this.imie = imie;
-        this.nazwisko = nazwisko;
+    public Student(String username, String password, String passwordConfirm, String imie, String nazwisko,Role role, String pesel){
+        super(username,password,passwordConfirm,imie,nazwisko, role);
         this.pesel = pesel;
     }
 }

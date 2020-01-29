@@ -31,14 +31,24 @@ public class RepositoriesInitializer {
     StudentRepository studentRepository;
     @Autowired
     StypendiumRepository stypendiumRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
     @Bean
     InitializingBean init(){
         return () -> {
-            if(ankietaRepository.findAll().isEmpty()){
-                Student student1 = new Student("Kacper", "Jedrzejewski", "97021411111");
-                Student student2 = new Student("Piotr", "Jadczuk", "97072522222");
-                Student student3 = new Student("Kinga", "Markowicz", "98112133333");
+            if(roleRepository.findAll().isEmpty()){
+                Role role = new Role(Role.Types.Pracownik);
+                Role role2 = new Role(Role.Types.Pracownik_Dziekanatu);
+                Role role3 = new Role(Role.Types.Student);
+
+                roleRepository.save(role);
+                roleRepository.save(role2);
+                roleRepository.save(role3);
+
+                Student student1 = new Student("kacperj", "kacper","kacper","Kacper", "Jedrzejewski", role3, "97021411111");
+                Student student2 = new Student("piotrj","piotr","piotr","Piotr", "Jadczuk", role3,"97072522222");
+                Student student3 = new Student("kingam","kinga","kinga","Kinga", "Markowicz", role3,"98112133333");
 
                 studentRepository.save(student1);
                 studentRepository.save(student2);
@@ -62,9 +72,9 @@ public class RepositoriesInitializer {
                 rokRepository.save(rok1);
                 rokRepository.save(rok2);
 
-                Pracownik pracownik1 = new Pracownik("Jarosław", "Skaruz", false);
-                Pracownik pracownik2 = new Pracownik("Grzegorz", "Terlikowski", false);
-                Pracownik pracownik3 = new Pracownik("Beata", "Ciok", true);
+                Pracownik pracownik1 = new Pracownik("marek", "marek","marek","Marek", "Bond", role, false);
+                Pracownik pracownik2 = new Pracownik("greg","greg","greg","Grzegorz", "Pond", role, false);
+                Pracownik pracownik3 = new Pracownik("bets","bets","bets","Beata", "Ciok", role2, true);
 
                 pracownikRepository.save(pracownik1);
                 pracownikRepository.save(pracownik2);

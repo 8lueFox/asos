@@ -14,27 +14,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "pracownicy")
-public class Pracownik {
+public class Pracownik extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @NotBlank
-    private String imie;
-
-    @NotBlank
-    private String nazwisko;
 
     private boolean pracownikAdministracyjny;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Przedmiot> przedmiotList;
 
-    public Pracownik(String imie, String nazwisko, boolean pracownikAdministracyjny){
-        this.imie = imie;
-        this.nazwisko = nazwisko;
+    public Pracownik(String username, String password, String passwordConfirm, String imie, String nazwisko, Role role,boolean pracownikAdministracyjny){
+        super(username, password,passwordConfirm, imie, nazwisko, role);
         this.pracownikAdministracyjny = pracownikAdministracyjny;
         this.przedmiotList = new ArrayList<>();
     }
