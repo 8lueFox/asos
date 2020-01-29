@@ -11,9 +11,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -40,5 +43,17 @@ public class OcenStudentaController {
         model.addAttribute("listaStudentow", students);
         model.addAttribute("listaOcen", oceny);
         return "studentListDoOceny";
+    }
+
+    @GetMapping(value = "wstawienieOcen", params = "idOceny")
+    public String dodajOcene(Model model, Optional<Integer> idOceny){
+        model.addAttribute("ocena",idOceny.isPresent()?semestrService.getOcena(idOceny.get()):new Ocena());
+        return "ocenaDetails";
+    }
+
+    @PostMapping(value = "wstawienieOcen", params = "ocena")
+    public String zapiszOcene(@ModelAttribute("Ocena") Ocena ocena){
+        semestrService.saveOcena(ocena);
+        return "redirect:wstawienieOcen?idPrzedmiotu="+ocena.getPrzedmiot().getId();
     }
 }

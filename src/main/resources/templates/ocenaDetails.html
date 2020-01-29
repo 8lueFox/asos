@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST" th:action="@{/wstawienieOcen}" th:object="${ocena}">
+        <input type="hidden" id="id" name="id" th:field="${ocena.id}">
+        <input type="hidden" id="przedmiot" name="przedmiot" th:field="${ocena.przedmiot.id}">
+        <input type="hidden" id="student" name="student" th:field="${ocena.student.id}">
+        <span><b><h3 th:text="${ocena.przedmiot.nazwa}"></h3></b></span>
+        <input type="text" disabled th:field="${ocena.student.imie}">
+        <input type="text" disabled th:field="${ocena.student.nazwisko}">
+        <input type="number" step="0.1" name="ocena" th:field="${ocena.ocena}">
+        <button type="submit">Zapisz</button>
+    </form>
+</body>
+</html>

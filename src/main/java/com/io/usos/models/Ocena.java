@@ -30,7 +30,6 @@ public class Ocena {
     private Student student;
 
     @PositiveOrZero
-    @Max(5)
     private float ocena;
 
     private Instant dataWstawienia;

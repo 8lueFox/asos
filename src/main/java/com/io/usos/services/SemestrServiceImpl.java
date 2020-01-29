@@ -11,6 +11,7 @@ import com.io.usos.repositories.RokRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +48,8 @@ public class SemestrServiceImpl implements SemestrService {
 
     @Override
     public void saveOcena(Ocena ocena) {
-        ocenaRepository.save(ocena);
+        ocena.setDataWstawienia(Instant.now());
+        ocenaRepository.saveAndFlush(ocena);
     }
 
     @Override
