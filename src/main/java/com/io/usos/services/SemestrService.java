@@ -13,7 +13,8 @@ public interface SemestrService {
 
     List<Przedmiot> getAllPrzedmiot();
 
-    List<Student> getStudenciPrzedmiotu(Integer idPrzedmiotu);
+    List<Student> getStudenciPrzedmiotu(int  idPrzedmiotu);
+    List<Ocena> getOcenyStudentówPrzedmiotu(int idPrzedmiotu);
 
     void deletePrzedmiot(int id);
 

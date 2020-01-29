@@ -66,6 +66,7 @@ public class RepositoriesInitializer {
 
                 przedmiot1.addStudent(student1);
                 przedmiot1.addStudent(student2);
+                przedmiot1.addStudent(student3);
 
                 przedmiotRepository.save(przedmiot1);
                 przedmiotRepository.save(przedmiot2);

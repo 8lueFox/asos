@@ -26,7 +26,7 @@ public class Ocena {
     @ManyToOne(fetch = FetchType.EAGER)
     private Przedmiot przedmiot;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Student student;
 
     @PositiveOrZero

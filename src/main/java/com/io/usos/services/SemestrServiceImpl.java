@@ -63,9 +63,14 @@ public class SemestrServiceImpl implements SemestrService {
     }
 
     @Override
-    public List<Student> getStudenciPrzedmiotu(Integer idPrzedmiotu) {
+    public List<Student> getStudenciPrzedmiotu(int idPrzedmiotu) {
         Przedmiot przedmiot = przedmiotRepository.findById(idPrzedmiotu).orElse(new Przedmiot());
         return przedmiot.getStudenci();
+    }
+
+    @Override
+    public List<Ocena> getOcenyStudentówPrzedmiotu(int idPrzedmiotu) {
+        return ocenaRepository.findAllByPrzedmiotIdOrderByStudentId(idPrzedmiotu);
     }
 
     @Override
