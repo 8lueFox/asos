@@ -13,10 +13,6 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class Student extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @NotBlank
     private String pesel;
 

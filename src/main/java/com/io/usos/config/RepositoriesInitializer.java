@@ -6,6 +6,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -33,6 +34,8 @@ public class RepositoriesInitializer {
     StypendiumRepository stypendiumRepository;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Bean
     InitializingBean init(){
@@ -46,9 +49,9 @@ public class RepositoriesInitializer {
                 roleRepository.save(role2);
                 roleRepository.save(role3);
 
-                Student student1 = new Student("kacperj", "kacper","kacper","Kacper", "Jedrzejewski", role3, "97021411111");
-                Student student2 = new Student("piotrj","piotr","piotr","Piotr", "Jadczuk", role3,"97072522222");
-                Student student3 = new Student("kingam","kinga","kinga","Kinga", "Markowicz", role3,"98112133333");
+                Student student1 = new Student("kacperj", passwordEncoder.encode("kacper"),"kacper","Kacper", "Jedrzejewski", role3, "97021411111");
+                Student student2 = new Student("piotrj",passwordEncoder.encode("piotr"),"piotr","Piotr", "Jadczuk", role3,"97072522222");
+                Student student3 = new Student("kingam",passwordEncoder.encode("kinga"),"kinga","Kinga", "Markowicz", role3,"98112133333");
 
                 studentRepository.save(student1);
                 studentRepository.save(student2);
@@ -72,9 +75,9 @@ public class RepositoriesInitializer {
                 rokRepository.save(rok1);
                 rokRepository.save(rok2);
 
-                Pracownik pracownik1 = new Pracownik("marek", "marek","marek","Marek", "Bond", role, false);
-                Pracownik pracownik2 = new Pracownik("greg","greg","greg","Grzegorz", "Pond", role, false);
-                Pracownik pracownik3 = new Pracownik("bets","bets","bets","Beata", "Ciok", role2, true);
+                Pracownik pracownik1 = new Pracownik("marek", passwordEncoder.encode("marek"),"marek","Marek", "Bond", role, false);
+                Pracownik pracownik2 = new Pracownik("greg",passwordEncoder.encode("greg"),"greg","Grzegorz", "Pond", role, false);
+                Pracownik pracownik3 = new Pracownik("bets",passwordEncoder.encode("bets"),"bets","Beata", "Ciok", role2, true);
 
                 pracownikRepository.save(pracownik1);
                 pracownikRepository.save(pracownik2);

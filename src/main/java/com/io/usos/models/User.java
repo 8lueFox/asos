@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -43,17 +45,23 @@ public class User{
     private boolean enabled;
 
     @AssertTrue
-    private boolean isPasswordEquals(){
+    private boolean isPasswordsEquals(){
         return password == null || passwordConfirm == null || password.equals(passwordConfirm);
     }
 
     public User(String username, String password, String passwordConfirm, String imie, String nazwisko, Role role){
         this.username = username;
         this.password = password;
-        this.passwordConfirm = passwordConfirm;
+        this.passwordConfirm = password;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.role = role;
         this.enabled = true;
+    }
+
+    public Set<Role> getRoles(){
+        Set<Role> roles = new HashSet<>();
+        roles.add(getRole());
+        return roles;
     }
 }

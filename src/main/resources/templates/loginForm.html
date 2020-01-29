@@ -5,7 +5,7 @@
     <title>ASOS</title>
 </head>
 <body>
-    <form th:method="POST" th:action="@{/login}">
+    <form th:method="POST" th:action="@{/login}"t>
         <input type="text" id="username" name="username" autofocus="true" placeholder="Username">
         <input type="password" id="password" name="password" placeholder="Password">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>

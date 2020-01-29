@@ -1,16 +1,24 @@
 package com.io.usos.services;
 
+import com.io.usos.config.ProfileNames;
 import com.io.usos.exceptions.ObjectNotFoundException;
 import com.io.usos.models.*;
 import com.io.usos.repositories.*;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
+@Profile(ProfileNames.DATABASE)
 public class UserServiceImpl implements UserService {
 
 
@@ -20,6 +28,15 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    UserRepository userRepository;
 
 
     @Override
@@ -71,5 +88,27 @@ public class UserServiceImpl implements UserService {
         studentRepository.save(student);
     }
 
+    @Override
+    public boolean isUniqueLogin(String login) {
+        return false;
+    }
 
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+        if(user == null){
+            System.out.println("Exception");
+        }
+
+        return createUserDetails(user);
+    }
+
+    private UserDetails createUserDetails(User user){
+        Set<GrantedAuthority> grantedAuthorities =
+                user.getRoles().stream().map(//mapowanie Role na GrantedAuthority
+                        r -> new SimpleGrantedAuthority(r.getType().toString())
+                ).collect(Collectors.toSet());
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, grantedAuthorities);
+    }
 }

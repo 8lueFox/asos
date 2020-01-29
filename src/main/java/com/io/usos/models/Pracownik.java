@@ -16,10 +16,6 @@ import java.util.List;
 @Entity
 public class Pracownik extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     private boolean pracownikAdministracyjny;
 
     @ManyToMany(fetch = FetchType.EAGER)

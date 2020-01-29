@@ -5,39 +5,42 @@
     <title>ASOS</title>
 </head>
 <body>
-<a class="dropdown-item" href="#" onclick="document.getElementById('logout').submit()" sec:authorize="isAuthenticated()">
-    Dzień dobry, <span sec:authentication="name"></span>
-    <form th:action="@{/logout}" id="logout" method="post" style="display: none;">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-    </form>
-    Sing out
-</a>
-<span sec:authorize="isAnonymous()">
-            <a href="/login">Sign in</a>
-</span>
-<div>
-    <b>Kacper</b>
-    <ul>
-        <li><a href="pokazStudentow">Pokaż studentów</a></li>
-        <li><a href="wstawienieOcen">Wstaw oceny</a></li>
-        <li><a href="utworzSemestr">Utwórz semestr</a></li>
-    </ul>
-</div>
-<div>
-    <b>Piotr</b>
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
-<div>
-    <b>Kinga</b>
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
+    <span sec:authorize="isAuthenticated()">
+        Dzień dobry, <span sec:authentication="name"></span>
+        <a class="dropdown-item" href="#" onclick="document.getElementById('logout').submit()">
+            <form th:action="@{/logout}" id="logout" method="post" style="display: none;">
+                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            </form>
+        Sing out
+        </a>
+    </span>
+
+    <span sec:authorize="isAnonymous()">
+                <a href="/login">Sign in</a>
+    </span>
+    <div>
+        <b>Kacper</b>
+        <ul>
+            <li><a href="pokazStudentow">Pokaż studentów</a></li>
+            <li><a href="wstawienieOcen">Wstaw oceny</a></li>
+            <li><a href="utworzSemestr">Utwórz semestr</a></li>
+        </ul>
+    </div>
+    <div>
+        <b>Piotr</b>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div>
+        <b>Kinga</b>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
 </body>
 </html>
