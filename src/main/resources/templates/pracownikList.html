@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Lista pracownikow</h3>
+<table class="table table-striped" th:unless="${pracownicy.isEmpty()}" border="1">
+    <th>Imie Nazwisko</th>
+    <th>Lista przedmiotów</th>
+    <th>Pracownik administracyjny</th>
+    <th>Opcje</th>
+
+    <th:block th:each="pracownik : ${pracownicy}">
+        <tr>
+
+            <td>[[${pracownik.imie}+' '+${pracownik.nazwisko}]]</td>
+            <td>[[${pracownik.przedmiotList}]]</td>
+            <td>[[${pracownik.pracownikAdministracyjny}]]</td>
+            <td>
+                <a th:href="@{/pracownikSzczegoly(id=${pracownik.id})}">Edytuj</a>
+
+            </td>
+
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
