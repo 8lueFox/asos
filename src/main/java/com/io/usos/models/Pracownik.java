@@ -42,4 +42,10 @@ public class Pracownik {
     public void dodajPrzedmiot(Przedmiot przedmiot){
         przedmiotList.add(przedmiot);
     }
+
+    public void usunPrzedmiot(Przedmiot przedmiot) {
+        if(przedmiotList.contains(przedmiot)){
+            przedmiotList.remove(przedmiot);
+        }
+    }
 }

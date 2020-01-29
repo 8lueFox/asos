@@ -41,6 +41,7 @@ public class Stypendium {
         this.student = student;
         this.sredniaOcen = sredniaOcen;
         this.informacje = informacje;
+        this.dataZlozenia = Instant.now();
     }
 
     public void calculateBasicPoints(){

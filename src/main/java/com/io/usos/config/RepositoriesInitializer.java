@@ -79,6 +79,7 @@ public class RepositoriesInitializer {
                 ocenaRepository.save(ocena2);
                 ocenaRepository.save(ocena3);
                 ocenaRepository.save(ocena4);
+
             }
         };
     }

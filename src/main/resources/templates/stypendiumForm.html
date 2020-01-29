@@ -6,7 +6,7 @@
 </head>
 <body>
 <h3>Podaj swoje dane</h3>
-<form th:action="@{stypendiumForm(stypendium)}" th:method="POST" th:object="${stypendium}">
+<form th:action="@{stypendiumForm.html}" th:method="POST" th:object="${stypendium}">
     <input hidden th:field="*{id}" type="text" autofocus="false">
     <input th:field="*{sredniaOcen}" value="4.5" type="number" disabled><br>
     <input placeholder="Informacje dodatkowe" th:field="*{informacje}" type="text"><br>
