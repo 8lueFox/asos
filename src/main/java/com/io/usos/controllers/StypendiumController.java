@@ -4,6 +4,7 @@ import com.io.usos.models.Pracownik;
 import com.io.usos.models.Student;
 import com.io.usos.models.Stypendium;
 import com.io.usos.services.DokumentyService;
+import com.io.usos.services.SemestrService;
 import com.io.usos.services.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,13 +34,25 @@ public class StypendiumController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    SemestrService semestrService;
+
     @GetMapping(value = "utworzWniosek")
     public String createStypendium(Model model, Optional<Integer> id) {
 
-        model.addAttribute("stypendium",
-                id.isPresent() ?
-                        dokumentyService.getStypendium(id.get()) :
-                        new Stypendium());
+        Stypendium s = new Stypendium();
+        if(id.isPresent()){
+            s = dokumentyService.getStypendium(id.get());
+        }
+        else
+        {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            Student student = userService.getStudent(auth.getName());
+
+            s.setSredniaOcen(semestrService.getSredniaOcen(student.getId()));
+        }
+
+        model.addAttribute("stypendium",s);
 
         return "stypendiumForm";
     }

@@ -32,4 +32,6 @@ public interface SemestrService {
 
     void saveOcena(Ocena ocena);
 
+    float getSredniaOcen(int id);
+
 }

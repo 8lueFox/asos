@@ -50,6 +50,16 @@ public class SemestrServiceImpl implements SemestrService {
     }
 
     @Override
+    public float getSredniaOcen(int id) {
+        List<Ocena> o = ocenaRepository.findAllByStudent_Id(id);
+        float tmp = 0;
+        for(int i=0;i<o.size();i++){
+            tmp+=o.get(i).getOcena();
+        }
+        return tmp/o.size();
+    }
+
+    @Override
     public Przedmiot getPrzedmiot(int id) {
         Optional<Przedmiot> optionalPrzedmiot = przedmiotRepository.findById(id);
         Przedmiot przedmiot = optionalPrzedmiot.orElseThrow(() -> new ObjectNotFoundException("przedmiot",id));
