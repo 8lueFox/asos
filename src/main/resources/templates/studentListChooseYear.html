@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     <h3>Lista lat</h3>
+    <span th:each="przedmiot : ${listaPrzedmiotow}">
+        <table>
+            <tr>
+                <th>Nazwa</th>
+                <th>Opcje</th>
+            </tr>
+            <tr>
+                <td th:text="${przedmiot.nazwa}"></td>
+                <td>
+                    <a th:href="@{pokazStudentow(idPrzedmiotu=${przedmiot.id})}">Pokaż studentów</a>
+                </td>
+            </tr>
+
+        </table>
+    </span>
 </body>
 </html>

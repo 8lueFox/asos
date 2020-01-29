@@ -93,6 +93,12 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public List<Przedmiot> getPrzedmiotyPracownika(String username) {
+        Pracownik pracownik = userRepository.findPracownikByUsername(username);
+        return pracownik.getPrzedmiotList();
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

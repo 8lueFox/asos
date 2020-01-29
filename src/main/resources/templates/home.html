@@ -5,7 +5,7 @@
     <title>ASOS</title>
 </head>
 <body>
-    <span sec:authorize="isAuthenticated()">
+<span sec:authorize="isAuthenticated()">
         Dzień dobry, <span sec:authentication="name"></span>
         <a class="dropdown-item" href="#" onclick="document.getElementById('logout').submit()">
             <form th:action="@{/logout}" id="logout" method="post" style="display: none;">
@@ -15,32 +15,38 @@
         </a>
     </span>
 
-    <span sec:authorize="isAnonymous()">
+<span sec:authorize="isAnonymous()">
                 <a href="/login">Sign in</a>
     </span>
-    <div>
-        <b>Kacper</b>
-        <ul>
-            <li><a href="pokazStudentow">Pokaż studentów</a></li>
-            <li><a href="wstawienieOcen">Wstaw oceny</a></li>
-            <li><a href="utworzSemestr">Utwórz semestr</a></li>
-        </ul>
-    </div>
-    <div>
-        <b>Piotr</b>
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-    <div>
-        <b>Kinga</b>
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
+<div>
+    <b>Kacper</b>
+    <ul>
+        <li><a href="pokazStudentow">Pokaż studentów</a></li>
+        <li><a href="wstawienieOcen">Wstaw oceny</a></li>
+        <li><a href="utworzSemestr">Utwórz semestr</a></li>
+    </ul>
+</div>
+<div>
+    <b>Piotr</b>
+    <ul>
+        <li>
+            <ul>
+                <li><a href="utworzWniosek">Nowy wniosek - student</a></li>
+                <li><a href="pokazWnioski">Moje wnioski - student</a></li>
+                <li><a href="zarzadzajWnioskami">Zarzadzaj wnioskami - pracownik</a></li>
+            </ul>
+        </li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div>
+    <b>Kinga</b>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.io.usos.services;
 import com.io.usos.models.Ocena;
 import com.io.usos.models.Przedmiot;
 import com.io.usos.models.Rok;
+import com.io.usos.models.Student;
 
 import java.util.List;
 
@@ -11,6 +12,8 @@ public interface SemestrService {
     Przedmiot getPrzedmiot(int id);
 
     List<Przedmiot> getAllPrzedmiot();
+
+    List<Student> getStudenciPrzedmiotu(Integer idPrzedmiotu);
 
     void deletePrzedmiot(int id);
 

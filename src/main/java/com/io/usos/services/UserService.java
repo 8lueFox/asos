@@ -26,4 +26,6 @@ public interface UserService extends UserDetailsService {
 
     boolean isUniqueLogin(String login);
 
+    List<Przedmiot> getPrzedmiotyPracownika(String username);
+
 }

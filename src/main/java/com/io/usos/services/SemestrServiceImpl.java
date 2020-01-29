@@ -4,6 +4,7 @@ import com.io.usos.exceptions.ObjectNotFoundException;
 import com.io.usos.models.Ocena;
 import com.io.usos.models.Przedmiot;
 import com.io.usos.models.Rok;
+import com.io.usos.models.Student;
 import com.io.usos.repositories.OcenaRepository;
 import com.io.usos.repositories.PrzedmiotRepository;
 import com.io.usos.repositories.RokRepository;
@@ -59,6 +60,12 @@ public class SemestrServiceImpl implements SemestrService {
     @Override
     public List<Przedmiot> getAllPrzedmiot() {
         return przedmiotRepository.findAll();
+    }
+
+    @Override
+    public List<Student> getStudenciPrzedmiotu(Integer idPrzedmiotu) {
+        Przedmiot przedmiot = przedmiotRepository.findById(idPrzedmiotu).orElse(new Przedmiot());
+        return przedmiot.getStudenci();
     }
 
     @Override
