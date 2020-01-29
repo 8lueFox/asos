@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            float:left;
+        }
+    </style>
+</head>
+<body>
+<h3>Lista lat</h3>
+<div>
+    <span th:each="student : ${listaStudentow}">
+        <table>
+            <tr>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Ocena</th>
+            </tr>
+            <tr>
+                <td th:text="${student.imie}"></td>
+                <td th:text="${student.nazwisko}"></td>
+                <span th:with="exist=false">
+                    <span th:each="ocena : ${listaOcen}">
+                    <td th:if="${student.id eq ocena.student.id}">
+                        <span th:text="${ocena.ocena}" th:with="exist=true"></span>
+                        <span><a th:href="@{wstawienieOcen(idOceny=${ocena.id})}">Wstaw/edytuj</a></span>
+                    </td>
+                    </span>
+                    <span th:if="${exist == false}">
+                    <td>
+                        <a th:href="@{wstawienieOcen(idOceny)}">Wstaw/edytuj</a>
+                    </td>
+                </span>
+                </span>
+            </tr>
+        </table>
+    </span>
+</div>
+<!--<div>-->
+<!--    <span th:each="ocena : ${listaOcen}">-->
+<!--    <table>-->
+<!--            <tr>-->
+<!--                <th>Ocena</th>-->
+<!--                <th>Opcje</th>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td th:text="${ocena.ocena}"></td>-->
+<!--                <td>-->
+<!--                    <a th:href="@{wstawienieOcen(idOceny=${ocena.id})}">Wstaw/edytuj</a>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--</span>-->
+<!--</div>-->
+
+</body>
+</html>

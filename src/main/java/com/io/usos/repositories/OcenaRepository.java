@@ -9,4 +9,5 @@ public interface OcenaRepository extends JpaRepository<Ocena, Integer> {
 
     List<Ocena> findAllByStudent_Id(int id);
 
+    List<Ocena> findAllByPrzedmiotIdOrderByStudentId(Integer przedmiotId);
 }

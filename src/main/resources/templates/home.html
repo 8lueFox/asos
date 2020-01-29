@@ -5,7 +5,7 @@
     <title>ASOS</title>
 </head>
 <body>
-<span sec:authorize="isAuthenticated()">
+    <span sec:authorize="isAuthenticated()">
         Dzień dobry, <span sec:authentication="name"></span>
         <a class="dropdown-item" href="#" onclick="document.getElementById('logout').submit()">
             <form th:action="@{/logout}" id="logout" method="post" style="display: none;">

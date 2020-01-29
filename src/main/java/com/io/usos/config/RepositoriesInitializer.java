@@ -60,6 +60,14 @@ public class RepositoriesInitializer {
                 Przedmiot przedmiot1 = new Przedmiot("Inzynieria oprogramowania");
                 Przedmiot przedmiot2 = new Przedmiot("Platformy programowania");
 
+                przedmiot2.addStudent(student1);
+                przedmiot2.addStudent(student2);
+                przedmiot2.addStudent(student3);
+
+                przedmiot1.addStudent(student1);
+                przedmiot1.addStudent(student2);
+                przedmiot1.addStudent(student3);
+
                 przedmiotRepository.save(przedmiot1);
                 przedmiotRepository.save(przedmiot2);
 
@@ -78,6 +86,9 @@ public class RepositoriesInitializer {
                 Pracownik pracownik1 = new Pracownik("marek", passwordEncoder.encode("marek"),"marek","Marek", "Bond", role, false);
                 Pracownik pracownik2 = new Pracownik("greg",passwordEncoder.encode("greg"),"greg","Grzegorz", "Pond", role, false);
                 Pracownik pracownik3 = new Pracownik("bets",passwordEncoder.encode("bets"),"bets","Beata", "Ciok", role2, true);
+
+                pracownik2.dodajPrzedmiot(przedmiot2);
+                pracownik1.dodajPrzedmiot(przedmiot1);
 
                 pracownikRepository.save(pracownik1);
                 pracownikRepository.save(pracownik2);

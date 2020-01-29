@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-    <h3>Lista lat</h3>
-    <span th:each="przedmiot : ${listaPrzedmiotow}">
+<h3>Lista lat</h3>
+<span th:each="przedmiot : ${przedmiotLista}">
         <table>
             <tr>
                 <th>Nazwa</th>
@@ -15,7 +15,7 @@
             <tr>
                 <td th:text="${przedmiot.nazwa}"></td>
                 <td>
-                    <a th:href="@{pokazStudentow(idPrzedmiotu=${przedmiot.id})}">Pokaż studentów</a>
+                    <a th:href="@{wstawienieOcen(idPrzedmiotu=${przedmiot.id})}">Pokaż studentów</a>
                 </td>
             </tr>
 

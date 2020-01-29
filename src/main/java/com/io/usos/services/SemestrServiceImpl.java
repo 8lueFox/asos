@@ -4,12 +4,14 @@ import com.io.usos.exceptions.ObjectNotFoundException;
 import com.io.usos.models.Ocena;
 import com.io.usos.models.Przedmiot;
 import com.io.usos.models.Rok;
+import com.io.usos.models.Student;
 import com.io.usos.repositories.OcenaRepository;
 import com.io.usos.repositories.PrzedmiotRepository;
 import com.io.usos.repositories.RokRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +48,8 @@ public class SemestrServiceImpl implements SemestrService {
 
     @Override
     public void saveOcena(Ocena ocena) {
-        ocenaRepository.save(ocena);
+        ocena.setDataWstawienia(Instant.now());
+        ocenaRepository.saveAndFlush(ocena);
     }
 
     @Override
@@ -69,6 +72,17 @@ public class SemestrServiceImpl implements SemestrService {
     @Override
     public List<Przedmiot> getAllPrzedmiot() {
         return przedmiotRepository.findAll();
+    }
+
+    @Override
+    public List<Student> getStudenciPrzedmiotu(int idPrzedmiotu) {
+        Przedmiot przedmiot = przedmiotRepository.findById(idPrzedmiotu).orElse(new Przedmiot());
+        return przedmiot.getStudenci();
+    }
+
+    @Override
+    public List<Ocena> getOcenyStudentówPrzedmiotu(int idPrzedmiotu) {
+        return ocenaRepository.findAllByPrzedmiotIdOrderByStudentId(idPrzedmiotu);
     }
 
     @Override
