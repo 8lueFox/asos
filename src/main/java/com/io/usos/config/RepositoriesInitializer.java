@@ -8,13 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.time.Duration;
 import java.time.Instant;
-import java.time.Period;
 import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 public class RepositoriesInitializer {
@@ -34,6 +29,8 @@ public class RepositoriesInitializer {
     StypendiumRepository stypendiumRepository;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    SemestRepository semestRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -80,7 +77,6 @@ public class RepositoriesInitializer {
                 Rok rok1 = new Rok("Informatyka", Instant.now(), ZonedDateTime.now().plusYears(3).plusMonths(6).toInstant());
                 Rok rok2 = new Rok("Matematyka", ZonedDateTime.now().minusYears(1).toInstant(), ZonedDateTime.now().plusYears(2).toInstant());
 
-                rokRepository.save(rok1);
                 rokRepository.save(rok2);
 
                 Pracownik pracownik1 = new Pracownik("marek", passwordEncoder.encode("marek"),"marek","Marek", "Bond", role, false);
@@ -103,6 +99,20 @@ public class RepositoriesInitializer {
                 ocenaRepository.save(ocena2);
                 ocenaRepository.save(ocena3);
                 ocenaRepository.save(ocena4);
+
+                Semestr semestr = new Semestr(ZonedDateTime.now().toInstant(), ZonedDateTime.now().plusMonths(6).toInstant());
+
+                semestr.dodajPrzedmiot(przedmiot1);
+                semestr.dodajPrzedmiot(przedmiot2);
+
+                rok1.dodajSemestr(semestr);
+                rok1.dodajStudenta(student1);
+                rok1.dodajStudenta(student2);
+                rok1.dodajStudenta(student3);
+
+                semestRepository.save(semestr);
+
+                rokRepository.save(rok1);
             }
         };
     }

@@ -27,10 +27,10 @@ public class Rok {
     private String nazwaKierunku;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Przedmiot> przedmioty;
+    private Set<Student> studenci;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Student> studenci;
+    private Set<Semestr> semestry;
 
     private Instant dataRozpoczecia;
 
@@ -41,15 +41,15 @@ public class Rok {
         this.dataRozpoczecia = dataRozpoczecia;
         this.dataZakonczenia = dataZakonczenia;
         this.studenci = new HashSet<>();
-        this.przedmioty = new HashSet<>();
-    }
-
-    public void dodajPrzedmiot(Przedmiot przedmiot){
-        przedmioty.add(przedmiot);
+        this.semestry = new HashSet<>();
     }
 
     public void dodajStudenta(Student student){
         studenci.add(student);
+    }
+
+    public void dodajSemestr(Semestr semestr){
+        semestry.add(semestr);
     }
 
 }
