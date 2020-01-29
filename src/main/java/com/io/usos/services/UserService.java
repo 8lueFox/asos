@@ -30,5 +30,4 @@ public interface UserService extends UserDetailsService {
 
     boolean isUniqueLogin(String login);
 
-
 }

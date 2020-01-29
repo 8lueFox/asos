@@ -1,5 +1,6 @@
 package com.io.usos.services;
 
+import com.io.usos.config.ProfileNames;
 import com.io.usos.exceptions.ObjectNotFoundException;
 import com.io.usos.models.*;
 import com.io.usos.repositories.*;
@@ -14,10 +15,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
+@Profile(ProfileNames.DATABASE)
 public class UserServiceImpl implements UserService {
 
 
