@@ -1,38 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h3>Moje stypendia</h3>
+<h3>Wnioski oczekujące</h3>
 <table class="table table-striped" th:unless="${stypendiaAdmin.isEmpty()}" border="1">
     <th>Data zlozenia</th>
+    <th>Student</th>
+    <th>Informacje dodatkowe</th>
     <th>Srednia ocen</th>
     <th>Punkty</th>
-    <th>Zatwierdzony</th>
+    <th>Rozpatrzony</th>
     <th>Opcje</th>
 
     <th:block th:each="wniosek : ${stypendiaAdmin}">
         <tr>
             <td>[[${#dates.format(wniosek.dataZlozenia, 'dd.MM.yyyy HH:mm')}]]</td>
+            <td>[[${wniosek.student.imie}+' '+${wniosek.student.nazwisko}]]</td>
+            <td>[[${wniosek.informacje}]]</td>
             <td>[[${wniosek.sredniaOcen}]]</td>
             <td>[[${wniosek.punkty}]]</td>
-            <td>[[${wniosek.zatwierdzony}]]</td>
             <td>
-                <a href="#">Rozpatrz</a>
+                <th:block th:if="${wniosek.zatwierdzony eq false}">
+                    Czeka na rozpatrzenie
+                </th:block>
+                <th:block th:if="${wniosek.rozpatrzonyPozytywnie eq false and wniosek.zatwierdzony eq true}">
+                    Odrzucony
+                </th:block>
+                <th:block th:if="${wniosek.rozpatrzonyPozytywnie eq true and wniosek.zatwierdzony eq true}">
+                    Przyjety
+                </th:block>
             </td>
-
-        </tr>
-    </th:block>
-    <th:block th:each="wniosek : ${stypendiaAdminOld}">
-        <tr>
-
-            <td>[[${#dates.format(wniosek.dataZlozenia, 'dd.MM.yyyy HH:mm')}]]</td>
-            <td>[[${wniosek.sredniaOcen}]]</td>
-            <td>[[${wniosek.punkty}]]</td>
-            <td>[[${wniosek.zatwierdzony}]]</td>
-            <td>Brak</td>
+            <td>
+                <a th:href="@{/pokazStypendiumSzczegoly(id=${wniosek.id})}">Rozpatrz</a>
+            </td>
 
         </tr>
     </th:block>

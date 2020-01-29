@@ -34,22 +34,26 @@ public class Stypendium {
 
     private boolean zatwierdzony;
 
+    private boolean rozpatrzonyPozytywnie;
+
     @OneToOne(fetch = FetchType.EAGER)
     private Student student;
 
     public Stypendium(Student student, float sredniaOcen, String informacje){
         this.student = student;
         this.sredniaOcen = sredniaOcen;
+        calculateBasicPoints();
         this.informacje = informacje;
         this.dataZlozenia = Instant.now();
     }
 
     public void calculateBasicPoints(){
-        this.punkty = (int) sredniaOcen * 100;
+        this.punkty = (int)(sredniaOcen * 100);
     }
 
     public void editPointsAmount(int amount){
         if(amount == 0) return;
         punkty += amount;
     }
+
 }

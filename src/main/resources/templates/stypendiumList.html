@@ -8,20 +8,33 @@
 <h3>Moje stypendia</h3>
 <table class="table table-striped" th:unless="${stypendia.isEmpty()}" border="1">
     <th>Data zlozenia</th>
+    <th>Informacje dodatkowe</th>
     <th>Srednia ocen</th>
     <th>Punkty</th>
-    <th>Zatwierdzony</th>
+    <th>Status</th>
     <th>Opcje</th>
 
     <th:block th:each="wniosek : ${stypendia}">
         <tr>
 
             <td>[[${#dates.format(wniosek.dataZlozenia, 'dd.MM.yyyy HH:mm')}]]</td>
+            <td>[[${wniosek.informacje}]]</td>
             <td>[[${wniosek.sredniaOcen}]]</td>
             <td>[[${wniosek.punkty}]]</td>
-            <td>[[${wniosek.zatwierdzony}]]</td>
             <td>
-                <a href="#">Edytuj</a>
+                <th:block th:if="${wniosek.zatwierdzony eq false}">
+                    Czeka na rozpatrzenie
+                </th:block>
+                <th:block th:if="${wniosek.rozpatrzonyPozytywnie eq false and wniosek.zatwierdzony eq true}">
+                    Odrzucony
+                </th:block>
+                <th:block th:if="${wniosek.rozpatrzonyPozytywnie eq true and wniosek.zatwierdzony eq true}">
+                    Przyjety
+                </th:block>
+            </td>
+            <td>
+                <a th:href="@{/utworzWniosek(id=${wniosek.id})}">Edytuj</a>
+
             </td>
 
         </tr>

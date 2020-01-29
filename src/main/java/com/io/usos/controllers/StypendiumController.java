@@ -34,11 +34,11 @@ public class StypendiumController {
     UserService userService;
 
     @GetMapping(value = "utworzWniosek")
-    public String createStypendium(Model model, Optional<Integer> cid) {
+    public String createStypendium(Model model, Optional<Integer> id) {
 
         model.addAttribute("stypendium",
-                cid.isPresent() ?
-                        dokumentyService.getStypendium(cid.get()) :
+                id.isPresent() ?
+                        dokumentyService.getStypendium(id.get()) :
                         new Stypendium());
 
         return "stypendiumForm";
@@ -55,12 +55,11 @@ public class StypendiumController {
     @GetMapping(value = "zarzadzajWnioskami")
     public String manageStypendium(Model model) {
         model.addAttribute("stypendiaAdmin", dokumentyService.getAllStypendium());
-        model.addAttribute("stypendiaAdminOld", dokumentyService.getAllStypendiumOld());
         return "stypendiumListAdmin";
     }
 
     @RequestMapping(value = "stypendiumForm.html", method = RequestMethod.POST)
-    public String processPizzaForm(@Valid @ModelAttribute("stypendium") Stypendium s) {
+    public String processStypendiumForm(@Valid @ModelAttribute("stypendium") Stypendium s) {
 
         /*if (errors.hasErrors()) {
             return "stypendiumForm";
@@ -75,4 +74,40 @@ public class StypendiumController {
 
         return "redirect:pokazWnioski";//po udanym dodaniu/edycji przekierowujemy na listę
     }
+
+    @GetMapping(value = "pokazStypendiumSzczegoly")
+    public String showStypendiumDetails(Model model, int id) {
+        model.addAttribute("stypendium", dokumentyService.getStypendium(id));
+        return "stypendiumDetails";
+    }
+
+    @GetMapping(value = "zatwierdzStypendium")
+    public String acceptStypendium(Model model, int id) {
+        Stypendium s = dokumentyService.getStypendium(Integer.valueOf(id));
+        s.setZatwierdzony(true);
+        s.setRozpatrzonyPozytywnie(true);
+        dokumentyService.saveStypendium(s);
+        return "redirect:zarzadzajWnioskami";
+    }
+
+    @GetMapping(value = "odrzucStypendium")
+    public String declineStypendium(Model model, int id) {
+        Stypendium s = dokumentyService.getStypendium(Integer.valueOf(id));
+        s.setZatwierdzony(true);
+        s.setRozpatrzonyPozytywnie(false);
+        dokumentyService.saveStypendium(s);
+        return "redirect:zarzadzajWnioskami";
+    }
+
+    @RequestMapping(value = "dodajPunktyStypendium", method = RequestMethod.POST)
+    //@ResponseStatus(HttpStatus.CREATED)
+    public String addPointToStypendium(@RequestParam String id, @RequestParam String punkty) {
+
+        Stypendium s = dokumentyService.getStypendium(Integer.valueOf(id));
+        s.editPointsAmount(Integer.valueOf(punkty));
+        dokumentyService.saveStypendium(s);
+
+        return "redirect:pokazStypendiumSzczegoly?id=" + id;//po udanym dodaniu/edycji przekierowujemy na listę
+    }
+
 }
