@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Podaj swoje dane</h3>
+<form th:action="@{stypendiumForm(stypendium)}" th:method="POST" th:object="${stypendium}">
+    <input hidden th:field="*{id}" type="text" autofocus="false">
+    <input th:field="*{sredniaOcen}" value="4.5" type="number" disabled><br>
+    <input placeholder="Informacje dodatkowe" th:field="*{informacje}" type="text"><br>
+    <button type="submit">Złóż wniosek</button>
+</form>
+</body>
+</html>

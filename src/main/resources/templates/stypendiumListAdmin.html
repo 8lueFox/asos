@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Podaj swoje dane</h3>
+<table th:unless="${stypendia.isEmpty()}">
+    <tr>
+        <th>ID</th>
+        <th>Data</th>
+        <th>Student</th>
+        <th>Punkty</th>
+        <th>Zatwierdzony</th>
+        <th></th>
+    </tr>
+    <tr th:each="stypendium : ${stypendia}">
+        <td th:text="${stypendium.id}"></td>
+        <td th:text="${stypendium.dataZlozenia}"></td>
+        <td th:text="${stypendium.student}"></td>
+        <td th:text="${stypendium.punkty}"></td>
+        <td th:text="${stypendium.zatwierdzony}"></td>
+        <td>
+            Rozpatrz - TODO
+        </td>
+    </tr>
+</table>
+</body>
+</html>

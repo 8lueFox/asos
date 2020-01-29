@@ -42,4 +42,13 @@ public class Stypendium {
         this.sredniaOcen = sredniaOcen;
         this.informacje = informacje;
     }
+
+    public void calculateBasicPoints(){
+        this.punkty = (int) sredniaOcen * 100;
+    }
+
+    public void editPointsAmount(int amount){
+        if(amount == 0) return;
+        punkty += amount;
+    }
 }

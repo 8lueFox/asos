@@ -58,6 +58,11 @@ public class DokumentyServiceImpl implements DokumentyService {
     }
 
     @Override
+    public List<Stypendium> getAllMyStypendium(int id) {
+        return stypendiumRepository.findAllByStudent_Id(id);
+    }
+
+    @Override
     public void deleteStypendium(int id) {
         if (stypendiumRepository.existsById(id) == true) {
             stypendiumRepository.deleteById(id);
