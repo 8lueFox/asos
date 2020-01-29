@@ -10,4 +10,6 @@ import java.util.List;
 public interface StypendiumRepository extends JpaRepository<Stypendium, Integer> {
 
     List<Stypendium> findAllByStudent_Id(int id);
+
+    List<Stypendium> findAllByZatwierdzonyIsTrue();
 }

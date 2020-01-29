@@ -45,6 +45,12 @@
         <li></li>
         <li></li>
     </ul>
+    <div sec:authorize="isAuthenticated()">
+        Twoje role to:
+        <span th:each="role: ${#authentication.getAuthorities()}">
+                            <span th:text="${role}"/>
+                        </span>
+    </div>
 </div>
 </body>
 </html>

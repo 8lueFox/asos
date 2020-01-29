@@ -8,16 +8,14 @@ import com.io.usos.services.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.Instant;
@@ -35,7 +33,6 @@ public class StypendiumController {
     @Autowired
     UserService userService;
 
-    //@Secured("Student")
     @GetMapping(value = "utworzWniosek")
     public String createStypendium(Model model, Optional<Integer> cid) {
 
@@ -47,23 +44,22 @@ public class StypendiumController {
         return "stypendiumForm";
     }
 
-    //@Secured("Student")
     @GetMapping(value = "pokazWnioski")
     public String showMyStypendium(Model model) {
-        model.addAttribute("stypendia", dokumentyService.getAllMyStypendium(1));
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Student student = userService.getStudent(auth.getName());
+        model.addAttribute("stypendia", dokumentyService.getAllMyStypendium(student.getId()));
         return "stypendiumList";
     }
 
-    //@Secured("Pracownik_Dziekanatu")
     @GetMapping(value = "zarzadzajWnioskami")
     public String manageStypendium(Model model) {
-        model.addAttribute("stypendia", dokumentyService.getAllStypendium());
+        model.addAttribute("stypendiaAdmin", dokumentyService.getAllStypendium());
+        model.addAttribute("stypendiaAdminOld", dokumentyService.getAllStypendiumOld());
         return "stypendiumListAdmin";
     }
 
-    //@Secured("Student")
     @RequestMapping(value = "stypendiumForm.html", method = RequestMethod.POST)
-    //@ResponseStatus(HttpStatus.CREATED)
     public String processPizzaForm(@Valid @ModelAttribute("stypendium") Stypendium s) {
 
         /*if (errors.hasErrors()) {

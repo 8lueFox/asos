@@ -58,6 +58,11 @@ public class DokumentyServiceImpl implements DokumentyService {
     }
 
     @Override
+    public List<Stypendium> getAllStypendiumOld() {
+        return stypendiumRepository.findAllByZatwierdzonyIsTrue();
+    }
+
+    @Override
     public List<Stypendium> getAllMyStypendium(int id) {
         return stypendiumRepository.findAllByStudent_Id(id);
     }

@@ -20,6 +20,8 @@ public interface DokumentyService {
 
     List<Stypendium> getAllStypendium();
 
+    List<Stypendium> getAllStypendiumOld();
+
     List<Stypendium> getAllMyStypendium(int id);
 
     void deleteStypendium(int id);
