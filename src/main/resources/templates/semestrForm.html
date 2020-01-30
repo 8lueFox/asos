@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Tworzenie semestru</h3>
+    <form th:method="POST" th:action="@{/utworzSemestr}">
+        <select id="nazwaKierunku" name="nazwaKierunku">
+            <option value="-1">Wybierz dla którego roku tworzony jest semestr</option>
+            <option th:each="year : ${rokList}" th:value="${year.nazwaKierunku}" th:text="${year.nazwaKierunku}"></option>
+        </select><br>
+        <input type="date" name="dataRozpoczecia"><br>
+        <input type="date" name="dataZakonczenia">
+        <button type="submit">Utwórz</button>
+<!--        TODO: wyświetlanie semestrów-->
+    </form>
+</body>
+</html>

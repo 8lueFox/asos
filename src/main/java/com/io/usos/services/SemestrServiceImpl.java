@@ -1,13 +1,11 @@
 package com.io.usos.services;
 
 import com.io.usos.exceptions.ObjectNotFoundException;
-import com.io.usos.models.Ocena;
-import com.io.usos.models.Przedmiot;
-import com.io.usos.models.Rok;
-import com.io.usos.models.Student;
+import com.io.usos.models.*;
 import com.io.usos.repositories.OcenaRepository;
 import com.io.usos.repositories.PrzedmiotRepository;
 import com.io.usos.repositories.RokRepository;
+import com.io.usos.repositories.SemestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +24,9 @@ public class SemestrServiceImpl implements SemestrService {
 
     @Autowired
     RokRepository rokRepository;
+
+    @Autowired
+    SemestRepository semestRepository;
 
     @Override
     public Ocena getOcena(int id) {
@@ -60,6 +61,11 @@ public class SemestrServiceImpl implements SemestrService {
             tmp+=o.get(i).getOcena();
         }
         return tmp/o.size();
+    }
+
+    @Override
+    public void saveSemestr(Semestr semestr) {
+        semestRepository.save(semestr);
     }
 
     @Override
@@ -102,6 +108,11 @@ public class SemestrServiceImpl implements SemestrService {
         Optional<Rok> optionalRok = rokRepository.findById(id);
         Rok rok = optionalRok.orElseThrow(() -> new ObjectNotFoundException("rok",id));
         return rok;
+    }
+
+    @Override
+    public Rok getRokByNazwaKierunku(String nazwaKierunku) {
+        return rokRepository.findAllByNazwaKierunku(nazwaKierunku);
     }
 
     @Override

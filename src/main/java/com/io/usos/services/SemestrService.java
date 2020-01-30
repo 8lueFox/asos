@@ -1,9 +1,6 @@
 package com.io.usos.services;
 
-import com.io.usos.models.Ocena;
-import com.io.usos.models.Przedmiot;
-import com.io.usos.models.Rok;
-import com.io.usos.models.Student;
+import com.io.usos.models.*;
 
 import java.util.List;
 
@@ -22,6 +19,8 @@ public interface SemestrService {
 
     Rok getRok(int id);
 
+    Rok getRokByNazwaKierunku(String nazwaKierunku);
+
     List<Rok> getAllRok();
 
     void deleteRok(int id);
@@ -37,5 +36,7 @@ public interface SemestrService {
     void saveOcena(Ocena ocena);
 
     float getSredniaOcen(int id);
+
+    void saveSemestr(Semestr semestr);
 
 }
