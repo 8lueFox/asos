@@ -5,26 +5,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "pytania")
-public class AnkietaPytanie {
+@Table(name = "odpowiedzi")
+public class Odpowiedz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String tresc;
+    @PositiveOrZero
+    private int value;
 
-    public AnkietaPytanie(String tresc){
-        this.tresc = tresc;
-    }
-
-    @Override
-    public String toString() {
-        return tresc;
+    public Odpowiedz(int value){
+        this.value = value;
     }
 }

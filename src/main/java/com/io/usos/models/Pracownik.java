@@ -17,7 +17,7 @@ public class Pracownik extends User{
 
     private boolean pracownikAdministracyjny;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Przedmiot> przedmiotList;
 
     public Pracownik(String username, String password, String passwordConfirm, String imie, String nazwisko, Role role,boolean pracownikAdministracyjny){

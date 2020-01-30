@@ -2,7 +2,10 @@ package com.io.usos.services;
 
 import com.io.usos.exceptions.ObjectNotFoundException;
 import com.io.usos.models.Ankieta;
+import com.io.usos.models.AnkietaOdpowiedz;
 import com.io.usos.models.Stypendium;
+import com.io.usos.repositories.AnkietaOdpowiedzRepository;
+import com.io.usos.repositories.AnkietaPytanieRepository;
 import com.io.usos.repositories.AnkietaRepository;
 import com.io.usos.repositories.StypendiumRepository;
 import javassist.NotFoundException;
@@ -17,6 +20,10 @@ public class DokumentyServiceImpl implements DokumentyService {
 
     @Autowired
     AnkietaRepository ankietaRepository;
+    @Autowired
+    AnkietaOdpowiedzRepository ankietaOdpowiedzRepository;
+    @Autowired
+    AnkietaPytanieRepository ankietaPytanieRepository;
 
     @Autowired
     StypendiumRepository stypendiumRepository;
@@ -31,6 +38,21 @@ public class DokumentyServiceImpl implements DokumentyService {
     @Override
     public List<Ankieta> getAllAnkieta() {
         return ankietaRepository.findAll();
+    }
+
+    @Override
+    public List<AnkietaOdpowiedz> getAllOdpowiedzi() {
+        return ankietaOdpowiedzRepository.findAll();
+    }
+
+    @Override
+    public List<AnkietaOdpowiedz> getAllOdpowiedzi(int id) {
+        return ankietaOdpowiedzRepository.findAllByAnkietaId(id);
+    }
+
+    @Override
+    public List<Ankieta> getAllMyAnkieta(int id) {
+        return ankietaRepository.findDistinctByPrzedmiot_StudenciId(id);
     }
 
     @Override
