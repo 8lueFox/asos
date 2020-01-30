@@ -16,17 +16,17 @@
 <form th:action="@{dodajPunktyStypendium}" th:method="POST">
     <input hidden name="id" th:value="${stypendium.id}" type="text">
     <input name="punkty" value="0" step="1" type="number"><br>
-    <button type="submit">Zmień liczbę punktów</button>
+    <button type="submit" class="btn btn-warning">Zmień liczbę punktów</button>
 </form>
 <th:block th:if="${stypendium.zatwierdzony eq false}">
-    <a th:href="@{/zatwierdzStypendium(id=${stypendium.id})}">Zatwierdz</a>
-    <a th:href="@{/odrzucStypendium(id=${stypendium.id})}">Odrzuc</a>
+    <a th:href="@{/zatwierdzStypendium(id=${stypendium.id})}" class="btn btn-warning">Zatwierdz</a>
+    <a th:href="@{/odrzucStypendium(id=${stypendium.id})}" class="btn btn-warning">Odrzuc</a>
 </th:block>
 <th:block th:if="${stypendium.rozpatrzonyPozytywnie eq true and stypendium.zatwierdzony eq true}">
-    <a th:href="@{/odrzucStypendium(id=${stypendium.id})}">Odrzuc</a>
+    <a th:href="@{/odrzucStypendium(id=${stypendium.id})}" class="btn btn-warning">Odrzuc</a>
 </th:block>
 <th:block th:if="${stypendium.rozpatrzonyPozytywnie eq false and stypendium.zatwierdzony eq true}">
-    <a th:href="@{/zatwierdzStypendium(id=${stypendium.id})}">Zatwierdz</a>
+    <a th:href="@{/zatwierdzStypendium(id=${stypendium.id})}" class="btn btn-warning">Zatwierdz</a>
 </th:block>
 </body>
 </html>

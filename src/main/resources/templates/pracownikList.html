@@ -27,13 +27,13 @@
             </td>
             <td>[[${pracownik.pracownikAdministracyjny}]]</td>
             <td>
-                <a th:href="@{/pracownikSzczegoly(id=${pracownik.id})}">Edytuj</a>
+                <a th:href="@{/pracownikSzczegoly(id=${pracownik.id})}" class="btn btn-warning">Edytuj</a>
 
             </td>
 
         </tr>
     </th:block>
 </table>
-<a th:href="@{/pracownikForm}">Dodaj nowego pracownika</a>
+<a th:href="@{/pracownikForm}" class="btn btn-warning">Dodaj nowego pracownika</a>
 </body>
 </html>

@@ -26,19 +26,19 @@
                     <span th:each="ocena : ${listaOcen}">
                     <td th:if="${student.id eq ocena.student.id}">
                         <span th:text="${ocena.ocena}" th:with="exist=true"></span>
-                        <span><a th:href="@{wstawienieOcen(idOceny=${ocena.id})}">Wstaw/edytuj</a></span>
+                        <span><a th:href="@{wstawienieOcen(idOceny=${ocena.id})}" class="btn btn-warning">Wstaw/edytuj</a></span>
                     </td>
                     </span>
                     <span th:if="${exist == false}">
                     <td>
-                        <a th:href="@{wstawienieOcen(idOceny)}">Wstaw/edytuj</a>
+                        <a th:href="@{wstawienieOcen(idOceny)}" class="btn btn-warning">Wstaw/edytuj</a>
                     </td>
                 </span>
                 </span>
             </tr>
         </table>
     </span>
-    <a th:href="@{/home}">Home</a>
+    <a th:href="@{/home}" class="btn btn-warning">Home</a>
 </div>
 <!--<div>-->
 <!--    <span th:each="ocena : ${listaOcen}">-->

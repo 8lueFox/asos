@@ -14,7 +14,7 @@
     <h6 style="color:red;">Mozesz odpiac przedmioty poprzez klikanie na nie</h6>
     <p>
         <th:block th:each="przedmiot : ${pracownik.przedmiotList}">
-            <a th:href="@{/usunPrzedmiotOdPracownika(id=${przedmiot.id},pid=${pracownik.id})}">[[${przedmiot.nazwa}]]</a>
+            <a th:href="@{/usunPrzedmiotOdPracownika(id=${przedmiot.id},pid=${pracownik.id})}" >[[${przedmiot.nazwa}]]</a>
         </th:block>
         <th:block th:if="${pracownik.przedmiotList.isEmpty()}">
             Nie prowadzi zadnego przedmiotu
@@ -22,7 +22,7 @@
     </p>
 </th:block>
 <h5>Jest pracownikiem administracyjnym: [[${pracownik.pracownikAdministracyjny}]]</h5>
-<a th:href="@{/edytujPracownika(id=${pracownik.id})}">Edytuj</a>
+<a th:href="@{/edytujPracownika(id=${pracownik.id})}" class="btn btn-warning">Edytuj</a>
 
 <form th:method="POST" th:action="@{pracownikAddPrzedmiot}">
     <fieldset>
@@ -39,7 +39,7 @@
                 />
             </select>
         </div>
-        <button type="submit" class="btn btn-primary btn-raised">Dodaj przedmiot</button>
+        <button type="submit" class="btn btn-primary btn-raised" class="btn btn-warning">Dodaj przedmiot</button>
     </fieldset>
 </form>
 </body>

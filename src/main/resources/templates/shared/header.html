@@ -43,34 +43,34 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="pokazStudentow">Pokaż studentów</a>
+                <a class="nav-link" href="pokazStudentow" sec:authorize="hasAuthority('Pracownik')">Pokaż studentów</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="wstawienieOcen">Wstaw oceny</a>
+                <a class="nav-link" href="wstawienieOcen" sec:authorize="hasAuthority('Pracownik')">Wstaw oceny</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="utworzSemestr">Utwórz semestr</a>
+                <a class="nav-link" href="utworzSemestr" sec:authorize="hasAuthority('Pracownik_Dziekanatu')">Utwórz semestr</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="zapisDoPrzedmiotu">Zapisz się do przedmiotu</a>
+                <a class="nav-link" href="zapisDoPrzedmiotu" sec:authorize="hasAuthority('Student')">Zapisz się do przedmiotu</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="utworzWniosek">Nowy wniosek</a>
+                <a class="nav-link" href="utworzWniosek" sec:authorize="hasAuthority('Student')">Nowy wniosek</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="pokazWnioski">Moje wnioski</a>
+                <a class="nav-link" href="pokazWnioski" sec:authorize="hasAuthority('Student')">Moje wnioski</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="zarzadzajWnioskami">Zarzadzaj wnioskami</a>
+                <a class="nav-link" href="zarzadzajWnioskami" sec:authorize="hasAuthority('Pracownik_Dziekanatu')">Zarzadzaj wnioskami</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="pokazPracownikow">Zobacz pracowników</a>
+                <a class="nav-link" href="pokazPracownikow" sec:authorize="hasAuthority('Pracownik_Dziekanatu')">Zobacz pracowników</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="pokazAnkiety">Zobacz ankiety</a>
+                <a class="nav-link" href="pokazAnkiety" sec:authorize="hasAuthority('Pracownik_Dziekanatu')">Zobacz ankiety</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="pokazMojeAnkiety">Zobacz moje ankiety</a>
+                <a class="nav-link" href="pokazMojeAnkiety" sec:authorize="hasAuthority('Student')">Zobacz moje ankiety</a>
             </li>
         </ul>
         <span sec:authorize="isAuthenticated()">

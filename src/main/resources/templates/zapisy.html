@@ -15,11 +15,11 @@
             <tr>
                 <td th:text="${przedmiot.nazwa}"></td>
                 <td>
-                    <a th:href="@{zapisDoPrzedmiotu(idPrzedmiotu=${przedmiot.id})}">Zapisz się</a>
+                    <a th:href="@{zapisDoPrzedmiotu(idPrzedmiotu=${przedmiot.id})}" class="btn btn-warning">Zapisz się</a>
                 </td>
             </tr>
         </table>
     </span>
-<a th:href="@{/home}">Home</a>
+<a th:href="@{/home}" class="btn btn-warning">Home</a>
 </body>
 </html>
