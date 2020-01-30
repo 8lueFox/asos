@@ -2,9 +2,10 @@ package com.io.usos.services;
 
 import com.io.usos.exceptions.ObjectNotFoundException;
 import com.io.usos.models.Ankieta;
+import com.io.usos.models.AnkietaOdpowiedz;
+import com.io.usos.models.Odpowiedz;
 import com.io.usos.models.Stypendium;
-import com.io.usos.repositories.AnkietaRepository;
-import com.io.usos.repositories.StypendiumRepository;
+import com.io.usos.repositories.*;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,12 @@ public class DokumentyServiceImpl implements DokumentyService {
 
     @Autowired
     AnkietaRepository ankietaRepository;
+    @Autowired
+    AnkietaOdpowiedzRepository ankietaOdpowiedzRepository;
+    @Autowired
+    AnkietaPytanieRepository ankietaPytanieRepository;
+    @Autowired
+    OdpowiedzRepository odpowiedzRepository;
 
     @Autowired
     StypendiumRepository stypendiumRepository;
@@ -34,6 +41,26 @@ public class DokumentyServiceImpl implements DokumentyService {
     }
 
     @Override
+    public List<Odpowiedz> getAllOdpowiedz() {
+        return odpowiedzRepository.findAll();
+    }
+
+    @Override
+    public List<AnkietaOdpowiedz> getAllOdpowiedzi() {
+        return ankietaOdpowiedzRepository.findAll();
+    }
+
+    @Override
+    public List<AnkietaOdpowiedz> getAllOdpowiedzi(int id) {
+        return ankietaOdpowiedzRepository.findAllByAnkietaId(id);
+    }
+
+    @Override
+    public List<Ankieta> getAllMyAnkieta(int id) {
+        return ankietaRepository.findDistinctByPrzedmiot_StudenciId(id);
+    }
+
+    @Override
     public void deleteAnkieta(int id) {
         if (ankietaRepository.existsById(id) == true) {
             ankietaRepository.deleteById(id);
@@ -43,6 +70,11 @@ public class DokumentyServiceImpl implements DokumentyService {
     @Override
     public void saveAnkieta(Ankieta ankieta) {
         ankietaRepository.save(ankieta);
+    }
+
+    @Override
+    public void saveAnkietaOdpowiedz(AnkietaOdpowiedz ankietaOdpowiedz) {
+        ankietaOdpowiedzRepository.save(ankietaOdpowiedz);
     }
 
     @Override

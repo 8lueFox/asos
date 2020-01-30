@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="POST" th:object="${odpowiedz}" th:action="wypelnijAnkiete">
+
+        <input type="text" th:field="*{id}" hidden/>
+
+        <input type="text" name="aid" th:value="${ankieta.id}" hidden/>
+
+        <h3>[[${ankieta.pracownik.imie}+' '+${ankieta.pracownik.nazwisko}]]</h3>
+        <h3>[[${ankieta.przedmiot.nazwa}]]</h3>
+
+        <th:block th:each="pytanie : ${ankieta.ankietaPytanie}">
+            <fieldset>
+            <b>[[${pytanie.tresc}]](od 1 do 10)</b>
+            <input type="number" th:field="*{odpowiedzi}" min="1" max="10" value="1">
+                </fieldset><br>
+        </th:block>
+
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Wyslij ankiete"/>
+
+</form>
+</body>
+</html>

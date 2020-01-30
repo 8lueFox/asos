@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>[[${ankieta.pracownik.imie}+' '+${ankieta.pracownik.nazwisko}]]</h3>
+<h3>[[${ankieta.przedmiot.nazwa}]]</h3>
+
+<h5 th:text="'Wypełnionych ankiet'+${wyniki.size()}"></h5>
+<h5 th:text="'Srednia ocena '+${srednia}"></h5>
+
+<th:block th:each="pytanie,iterStat : ${ankieta.ankietaPytanie}">
+    <b>[[${pytanie.tresc}]]</b><br>
+    Srednia odpowiedz: [[${srednie[iterStat.index]}]]<br>
+
+</th:block>
+<a th:href="pokazAnkiety">Lista ankiet</a>
+</body>
+</html>

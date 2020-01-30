@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,5 +21,15 @@ public class Ankieta {
     @ManyToOne(fetch = FetchType.EAGER)
     private Pracownik pracownik;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Przedmiot przedmiot;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<AnkietaPytanie> ankietaPytanie;
+
+    public Ankieta(Pracownik pracownik, Przedmiot przedmiot, List<AnkietaPytanie> ankietaPytanie) {
+        this.pracownik = pracownik;
+        this.przedmiot = przedmiot;
+        this.ankietaPytanie = ankietaPytanie;
+    }
 }

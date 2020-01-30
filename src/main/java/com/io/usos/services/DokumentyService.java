@@ -1,6 +1,8 @@
 package com.io.usos.services;
 
 import com.io.usos.models.Ankieta;
+import com.io.usos.models.AnkietaOdpowiedz;
+import com.io.usos.models.Odpowiedz;
 import com.io.usos.models.Stypendium;
 import javassist.NotFoundException;
 
@@ -12,9 +14,19 @@ public interface DokumentyService {
 
     List<Ankieta> getAllAnkieta();
 
+    List<Odpowiedz> getAllOdpowiedz();
+
+    List<AnkietaOdpowiedz> getAllOdpowiedzi();
+
+    List<AnkietaOdpowiedz> getAllOdpowiedzi(int id);
+
+    List<Ankieta> getAllMyAnkieta(int id);
+
     void deleteAnkieta(int id);
 
     void saveAnkieta(Ankieta ankieta);
+
+    void saveAnkietaOdpowiedz(AnkietaOdpowiedz ankietaOdpowiedz);
 
     Stypendium getStypendium(int id);
 
