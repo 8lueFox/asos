@@ -4,59 +4,20 @@
     <meta charset="UTF-8">
     <title>ASOS</title><div th:replace="shared/header :: header-css"/>
 </head>
-<body>
-    <span sec:authorize="isAuthenticated()">
-        Dzień dobry, <span sec:authentication="name"></span>
-        <a class="dropdown-item" href="#" onclick="document.getElementById('logout').submit()">
-            <form th:action="@{/logout}" id="logout" method="post" style="display: none;">
-                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            </form>
-        Sing out
-        </a>
-    </span>
-
-<span sec:authorize="isAnonymous()">
-                <a href="/login">Sign in</a>
-    </span>
-<div>
-    <b>Kacper</b>
-    <ul>
-        <li><a href="pokazStudentow">Pokaż studentów</a></li>
-        <li><a href="wstawienieOcen">Wstaw oceny</a></li>
-        <li><a href="utworzSemestr">Utwórz semestr</a></li>
-        <li><a href="zapisDoPrzedmiotu">Zapisz się do przedmiotu</a></li>
-    </ul>
-</div>
-<div>
-    <b>Piotr</b>
-    <ul>
-        <li>
-            <a href="utworzWniosek">Nowy wniosek - student</a>
-            <a href="pokazWnioski">Moje wnioski - student</a>
-            <a href="zarzadzajWnioskami">Zarzadzaj wnioskami - pracownik_dziekanatu</a>
-        </li>
-        <li>
-            <a href="pokazPracownikow">Zobacz pracowników - pracownik_dziekanatu</a>
-        </li>
-        <li>
-            <a href="pokazAnkiety">Zobacz ankiety</a>
-            <a href="pokazMojeAnkiety">Zobacz moje ankiety</a>
-        </li>
-    </ul>
-</div>
-<div>
-    <b>Kinga</b>
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-    <div sec:authorize="isAuthenticated()">
-        Twoje role to:
-        <span th:each="role: ${#authentication.getAuthorities()}">
-                            <span th:text="${role}"/>
-                        </span>
+<body><div th:replace="shared/header :: header"/>
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 mt-5 pt-5">
+        <h1 class="text-warning text-center font-weight-bold">ASOS</h1>
     </div>
+    <div class="col-4"></div>
+</div>
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 mt-5 pt-5">
+        <h3 class="text-warning text-center">Akademicki System Obsługi Studenta</h3>
+    </div>
+    <div class="col-4"></div>
 </div>
 </body>
 </html>

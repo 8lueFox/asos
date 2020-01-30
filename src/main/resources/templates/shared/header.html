@@ -10,9 +10,82 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <style>
+            html, body {
+                height: 100%;
+            }
+
+            #wrap {
+                min-height: 100%;
+            }
+
+            #main {
+                overflow:auto;
+                padding-bottom:150px; /* this needs to be bigger than footer height*/
+            }
+
+            .footer {
+                position: relative;
+                margin-top: -150px; /* negative value of footer height */
+                height: 150px;
+                clear:both;
+                padding-top:20px;
+            }
+        </style>
     </div>
 </head>
 <body>
-
-</body>
-</html>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header">
+    <a class="navbar-brand text-warning font-weight-bold" href="/">ASOS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="pokazStudentow">Pokaż studentów</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="wstawienieOcen">Wstaw oceny</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="utworzSemestr">Utwórz semestr</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="zapisDoPrzedmiotu">Zapisz się do przedmiotu</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="utworzWniosek">Nowy wniosek</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="pokazWnioski">Moje wnioski</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="zarzadzajWnioskami">Zarzadzaj wnioskami</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="pokazPracownikow">Zobacz pracowników</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="pokazAnkiety">Zobacz ankiety</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="pokazMojeAnkiety">Zobacz moje ankiety</a>
+            </li>
+        </ul>
+        <span sec:authorize="isAuthenticated()">
+            Dzień dobry, <span sec:authentication="name"></span>
+            <a class="dropdown-item" href="#" onclick="document.getElementById('logout').submit()">
+                <form th:action="@{/logout}" id="logout" method="post" style="display: none;">
+                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                </form>
+            Sing out
+            </a>
+        </span>
+        <span class="navbar-text" sec:authorize="isAnonymous()">
+            <a href="/login">Sign in</a>
+        </span>
+    </div>
+</nav>
+<div id="wrap">
+    <div id="main" class="container clear-top">

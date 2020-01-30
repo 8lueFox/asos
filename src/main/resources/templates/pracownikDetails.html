@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Title</title><div th:replace="shared/header :: header-css"/>
 </head>
-<body>
+<body><div th:replace="shared/header :: header"/>
 <h3>[[${pracownik.imie}+' '+${pracownik.nazwisko}]]</h3>
 <th:block th:unless="${pracownik.przedmiotList.isEmpty()}">
     <h5>Lista prowadzonych przedmiotow</h5>

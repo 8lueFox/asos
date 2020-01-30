@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title><div th:replace="shared/header :: header-css"/>
 </head>
-<body>
+<body><div th:replace="shared/header :: header"/>
 <h3>Podaj swoje dane</h3>
 <form th:action="@{stypendiumForm.html}" th:method="POST" th:object="${stypendium}">
     <input hidden th:field="*{id}" type="text" autofocus="false">

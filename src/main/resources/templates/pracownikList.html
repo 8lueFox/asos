@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Title</title><div th:replace="shared/header :: header-css"/>
 </head>
-<body>
+<body><div th:replace="shared/header :: header"/>
 <h3>Lista pracownikow</h3>
 <table class="table table-striped" th:unless="${pracownicy.isEmpty()}" border="1">
     <th>Imie Nazwisko</th>

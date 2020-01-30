@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title><div th:replace="shared/header :: header-css"/>
 </head>
-<body>
+<body><div th:replace="shared/header :: header"/>
     <h3>Tworzenie semestru</h3>
     <form th:method="POST" th:action="@{/utworzSemestr}">
         <select id="nazwaKierunku" name="nazwaKierunku">

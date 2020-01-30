@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Title</title><div th:replace="shared/header :: header-css"/>
 </head>
-<body>
+<body><div th:replace="shared/header :: header"/>
 <h3>Wnioski oczekujące</h3>
 <table class="table table-striped" th:unless="${stypendiaAdmin.isEmpty()}" border="1">
     <th>Data zlozenia</th>

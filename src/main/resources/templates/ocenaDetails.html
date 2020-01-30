@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title><div th:replace="shared/header :: header-css"/>
 </head>
-<body>
+<body><div th:replace="shared/header :: header"/>
     <form method="POST" th:action="@{/wstawienieOcen}" th:object="${ocena}">
         <input type="hidden" id="id" name="id" th:field="${ocena.id}">
         <input type="hidden" id="przedmiot" name="przedmiot" th:field="${ocena.przedmiot.id}">
