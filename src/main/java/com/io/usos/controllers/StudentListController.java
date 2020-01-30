@@ -35,6 +35,7 @@ public class StudentListController {
     @GetMapping(value = "pokazStudentow", params = "idPrzedmiotu")
     public String getStudenci(Model model, Integer idPrzedmiotu){
         model.addAttribute("listaStudentow", semestrService.getStudenciPrzedmiotu(idPrzedmiotu));
+        model.addAttribute("przedmiot", idPrzedmiotu);
         return "studentList";
     }
 

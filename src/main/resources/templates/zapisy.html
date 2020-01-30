@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Zapisy</h3>
+    <span th:each="przedmiot : ${listaPrzedmiotow}">
+        <table>
+            <tr>
+                <th>Nazwa</th>
+                <th>Opcje</th>
+            </tr>
+            <tr>
+                <td th:text="${przedmiot.nazwa}"></td>
+                <td>
+                    <a th:href="@{zapisDoPrzedmiotu(idPrzedmiotu=${przedmiot.id})}">Zapisz się</a>
+                </td>
+            </tr>
+        </table>
+    </span>
+<a th:href="@{/home}">Home</a>
+</body>
+</html>
