@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -16,7 +17,14 @@
         <tr>
 
             <td>[[${pracownik.imie}+' '+${pracownik.nazwisko}]]</td>
-            <td>[[${pracownik.przedmiotList}]]</td>
+            <td>
+                <th:block th:each="przedmiot : ${pracownik.przedmiotList}">
+                    [[${przedmiot.nazwa}]]
+                </th:block>
+                <th:block th:if="${pracownik.przedmiotList.isEmpty()}">
+                    Nie prowadzi zadnego przedmiotu
+                </th:block>
+            </td>
             <td>[[${pracownik.pracownikAdministracyjny}]]</td>
             <td>
                 <a th:href="@{/pracownikSzczegoly(id=${pracownik.id})}">Edytuj</a>
@@ -26,5 +34,6 @@
         </tr>
     </th:block>
 </table>
+<a th:href="@{/pracownikForm}">Dodaj nowego pracownika</a>
 </body>
 </html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>[[${pracownik.imie}+' '+${pracownik.nazwisko}]]</h3>
+<th:block th:unless="${pracownik.przedmiotList.isEmpty()}">
+    <h5>Lista prowadzonych przedmiotow</h5>
+    <h5>Lacznie prowadzonych przedmiotow: [[${pracownik.przedmiotList.size()}]]</h5>
+    <h6 style="color:red;">Mozesz odpiac przedmioty poprzez klikanie na nie</h6>
+    <p>
+        <th:block th:each="przedmiot : ${pracownik.przedmiotList}">
+            <a th:href="@{/usunPrzedmiotOdPracownika(id=${przedmiot.id},pid=${pracownik.id})}">[[${przedmiot.nazwa}]]</a>
+        </th:block>
+        <th:block th:if="${pracownik.przedmiotList.isEmpty()}">
+            Nie prowadzi zadnego przedmiotu
+        </th:block>
+    </p>
+</th:block>
+<h5>Jest pracownikiem administracyjnym: [[${pracownik.pracownikAdministracyjny}]]</h5>
+<a th:href="@{/edytujPracownika(id=${pracownik.id})}">Edytuj</a>
+
+<form th:method="POST" th:action="@{pracownikAddPrzedmiot}">
+    <fieldset>
+
+        <input id="id" type="text" name="id" hidden th:value="${pracownik.id}"/>
+
+        <div class="form-group">
+            <label for="przedmiot" class="bmd-label-floating"></label>
+            <select id="przedmiot" name="przedmiot" class="form-control">
+                <option value="-1">--wybierz przedmiot do dodania--</option>
+                <option th:each="przed : ${wszystkiePrzedmioty}"
+                        th:value="${przed.id}"
+                        th:text=" ${przed.nazwa}"
+                />
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-raised">Dodaj przedmiot</button>
+    </fieldset>
+</form>
+</body>
+</html>

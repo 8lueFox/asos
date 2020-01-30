@@ -20,4 +20,9 @@ public class Student extends User{
         super(username,password,passwordConfirm,imie,nazwisko, role);
         this.pesel = pesel;
     }
+
+    @Override
+    public String toString() {
+        return getImie() + " " + getNazwisko() ;
+    }
 }
