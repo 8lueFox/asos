@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Pracownik getPracownik(int id) {
-        Optional<Pracownik> optionalPracownik = pracownikRepository.findById(id);
+        Optional<Pracownik> optionalPracownik = Optional.ofNullable(pracownikRepository.findDistinctById(id));
         Pracownik pracownik = optionalPracownik.orElseThrow(() -> new ObjectNotFoundException("pracownik",id));
         return pracownik;
     }

@@ -35,4 +35,9 @@ public class Przedmiot {
     public void addStudent(Student student){
         studenci.add(student);
     }
+
+    @Override
+    public String toString() {
+        return nazwa;
+    }
 }

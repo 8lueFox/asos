@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Podaj dane nowego pracownika</h3>
+<form th:method="POST" th:object="${userCommand}" th:action="pracownikForm">
+    <fieldset>
+        <div class="form-group">
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="text" th:field="*{username}"
+                   class="form-control" placeholder="nazwa użytkownika" required="true" autofocus="true"/>
+        </div>
+
+        <div class="form-group">
+            <input type="password" th:field="*{password}"
+                   class="form-control" placeholder="hasło" required="true" autofocus="true"/>
+        </div>
+
+        <div class="form-group">
+            <input type="text" th:field="*{imie}"
+                   class="form-control" placeholder="imie" required="true" autofocus="true"/>
+        </div>
+
+        <div class="form-group">
+            <input type="text" th:field="*{nazwisko}"
+                   class="form-control" placeholder="nazwisko" required="true" autofocus="true"/>
+        </div>
+
+        <div class="form-group">
+            <input type="checkbox" th:field="*{pracownikAdministracyjny}"
+                   class="form-control"   autofocus="true"/>
+        </div>
+
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Dodaj nowego pracownika"/>
+
+    </fieldset>
+</form>
+</body>
+</html>
