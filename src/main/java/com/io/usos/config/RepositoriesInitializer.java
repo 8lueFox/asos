@@ -158,7 +158,6 @@ public class RepositoriesInitializer {
                 ankietaRepository.save(ankieta1);
                 ankietaRepository.save(ankieta2);
 
-                Odpowiedz odpowiedz0 = new Odpowiedz(0);
                 Odpowiedz odpowiedz1 = new Odpowiedz(1);
                 Odpowiedz odpowiedz2 = new Odpowiedz(2);
                 Odpowiedz odpowiedz3 = new Odpowiedz(3);
@@ -170,7 +169,6 @@ public class RepositoriesInitializer {
                 Odpowiedz odpowiedz9 = new Odpowiedz(9);
                 Odpowiedz odpowiedz10 = new Odpowiedz(10);
 
-                odpowiedzRepository.save(odpowiedz0);
                 odpowiedzRepository.save(odpowiedz1);
                 odpowiedzRepository.save(odpowiedz2);
                 odpowiedzRepository.save(odpowiedz3);

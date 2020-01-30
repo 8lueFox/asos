@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 @Getter
@@ -18,7 +19,7 @@ public class Odpowiedz {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @PositiveOrZero
+    @Positive
     private int value;
 
     public Odpowiedz(int value){

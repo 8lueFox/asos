@@ -2,6 +2,7 @@ package com.io.usos.controllers;
 
 import com.io.usos.models.Ankieta;
 import com.io.usos.models.AnkietaOdpowiedz;
+import com.io.usos.models.Odpowiedz;
 import com.io.usos.models.Student;
 import com.io.usos.services.DokumentyService;
 import com.io.usos.services.SemestrService;
@@ -14,7 +15,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class AnkietyController {
@@ -33,7 +37,7 @@ public class AnkietyController {
     @GetMapping(value = "pokazAnkiety")
     public String showAllAnkiety(Model model) {
         model.addAttribute("ankietyAll", dokumentyService.getAllAnkieta());
-        return "ankietaList";
+        return "ankietaListAdmin";
     }
 
     @GetMapping(value = "pokazMojeAnkiety")
@@ -48,8 +52,27 @@ public class AnkietyController {
 
     @GetMapping(value = "zobaczWyniki")
     public String showAnkietaResults(Model model, int id) throws NotFoundException {
+
+        List<AnkietaOdpowiedz> odp = dokumentyService.getAllOdpowiedzi(id);
+        List<Float> srednie = new ArrayList<>();
+        float temp = 0;
+        for (int i = 0; i < odp.size(); i++) {
+            temp += odp.get(i).Srednia();
+        }
+        float srednia = temp / odp.size();
+        for (int i = 0; i < dokumentyService.getAnkieta(id).getAnkietaPytanie().size(); i++) {
+            int tmp = 0;
+            for (int j = 0; j < odp.size(); j++) {
+                tmp += odp.get(j).getOdpowiedzi().get(i).getValue();
+            }
+            srednie.add((float) (tmp/odp.size()));
+        }
+
         model.addAttribute("ankieta", dokumentyService.getAnkieta(id));
         model.addAttribute("wyniki", dokumentyService.getAllOdpowiedzi(id));
+        model.addAttribute("srednia", srednia);
+        model.addAttribute("srednie", srednie);
+
         return "ankietaResults";
     }
 
@@ -58,8 +81,18 @@ public class AnkietyController {
 
         Ankieta a = dokumentyService.getAnkieta(id);
         AnkietaOdpowiedz ao = new AnkietaOdpowiedz();
-        model.addAttribute("odpowiedz",ao);
+        List<Odpowiedz> odp = dokumentyService.getAllOdpowiedz();
+        model.addAttribute("odpowiedz", ao);
         model.addAttribute("ankieta", a);
         return "ankietaForm";
+    }
+
+    @RequestMapping(value = "wypelnijAnkiete", method = RequestMethod.POST)
+    public String registration(@ModelAttribute("odpowiedz") AnkietaOdpowiedz ankietaOdpowiedz, @RequestParam String aid) throws NotFoundException {
+
+        Ankieta a = dokumentyService.getAnkieta(Integer.parseInt(aid));
+        ankietaOdpowiedz.setAnkieta(a);
+        dokumentyService.saveAnkietaOdpowiedz(ankietaOdpowiedz);
+        return "redirect:home";
     }
 }

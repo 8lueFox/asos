@@ -3,11 +3,9 @@ package com.io.usos.services;
 import com.io.usos.exceptions.ObjectNotFoundException;
 import com.io.usos.models.Ankieta;
 import com.io.usos.models.AnkietaOdpowiedz;
+import com.io.usos.models.Odpowiedz;
 import com.io.usos.models.Stypendium;
-import com.io.usos.repositories.AnkietaOdpowiedzRepository;
-import com.io.usos.repositories.AnkietaPytanieRepository;
-import com.io.usos.repositories.AnkietaRepository;
-import com.io.usos.repositories.StypendiumRepository;
+import com.io.usos.repositories.*;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +22,8 @@ public class DokumentyServiceImpl implements DokumentyService {
     AnkietaOdpowiedzRepository ankietaOdpowiedzRepository;
     @Autowired
     AnkietaPytanieRepository ankietaPytanieRepository;
+    @Autowired
+    OdpowiedzRepository odpowiedzRepository;
 
     @Autowired
     StypendiumRepository stypendiumRepository;
@@ -38,6 +38,11 @@ public class DokumentyServiceImpl implements DokumentyService {
     @Override
     public List<Ankieta> getAllAnkieta() {
         return ankietaRepository.findAll();
+    }
+
+    @Override
+    public List<Odpowiedz> getAllOdpowiedz() {
+        return odpowiedzRepository.findAll();
     }
 
     @Override
@@ -65,6 +70,11 @@ public class DokumentyServiceImpl implements DokumentyService {
     @Override
     public void saveAnkieta(Ankieta ankieta) {
         ankietaRepository.save(ankieta);
+    }
+
+    @Override
+    public void saveAnkietaOdpowiedz(AnkietaOdpowiedz ankietaOdpowiedz) {
+        ankietaOdpowiedzRepository.save(ankietaOdpowiedz);
     }
 
     @Override

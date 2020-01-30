@@ -31,4 +31,12 @@ public class AnkietaOdpowiedz {
         this.ankieta = ankieta;
         this.odpowiedzi = odpowiedzi;
     }
+
+    public float Srednia(){
+        float temp = 0;
+        for(int i=0;i<odpowiedzi.size();i++){
+            temp+=odpowiedzi.get(i).getValue();
+        }
+        return temp/odpowiedzi.size();
+    }
 }
